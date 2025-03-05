@@ -1,7 +1,7 @@
 # homelab
 
-[ ] traefik
-[ ] vault
-[ ] postgres
-[ ] redis
+- [x] traefik
+- [ ] vault
+- [ ] postgres
+- [ ] redis
 
