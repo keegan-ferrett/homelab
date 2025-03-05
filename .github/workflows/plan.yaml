@@ -9,6 +9,10 @@ jobs:
   build:
     runs-on: self-hosted
     steps:
+    - name: pwd test
+      run: pwd 
+    - name: ls test
+      run: ls -al 
     - name: init
       run: terraform init
     - name: plan
