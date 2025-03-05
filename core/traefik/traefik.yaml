@@ -127,44 +127,20 @@ api:
 ################################################################
 
 providers:
+  nomad:
+    refreshInterval: 15s
+    endpoint:
+      address: "http://192.168.88.101:4646"
   # Enable Docker configuration backend
   docker:
-    # Docker server endpoint. Can be a tcp or a unix socket endpoint.
-    #
-    # Required
-    # Default: "unix:///var/run/docker.sock"
-    #
     endpoint: "unix:///var/run/docker.sock"
-
-    # Default host rule.
-    #
-    # Optional
-    # Default: "Host(`{{ normalize .Name }}`)"
-    #
-#    defaultRule: Host(`{{ normalize .Name }}.docker.localhost`)
-
-    # Expose containers by default in traefik
-    #
-    # Optional
-    # Default: true
-    #
 #    exposedByDefault: false
 
 certificatesResolvers:
   myresolver:
     # Enable ACME (Let's Encrypt): automatic SSL.
     acme:
-
-      # Email address used for registration.
-      #
-      # Required
-      #
-      email: "YOU_EMAIL"
-
-      # File or key used for certificates storage.
-      #
-      # Required
-      #
+      email: "keegan.ferrett@gmail.com"
       storage: "/etc/traefik/acme.json"
 
       # CA server to use.
