@@ -39,32 +39,32 @@ resource "docker_container" "traefik" {
   }
 
   labels {
-    key   = "traefik.enable"
+    label = "traefik.enable"
     value = "true"
   }
 
   labels {
-    key   = "traefik.http.routers.traefik-internal-router.rule"
+    label = "traefik.http.routers.traefik-internal-router.rule"
     value = "Host(\"traefik.keegan.boston\")"
   }
 
   labels {
-    key   = "traefik.http.routers.traefik-internal-router.entrypoints"
+    label = "traefik.http.routers.traefik-internal-router.entrypoints"
     value = "websecure"
   }
 
   labels {
-    key   = "traefik.http.routers.traefik-internal-router.tls"
+    label = "traefik.http.routers.traefik-internal-router.tls"
     value = "true"
   }
 
   labels {
-    key   = "traefik.http.routers.traefik-internal-router.tls.certresolver"
+    label = "traefik.http.routers.traefik-internal-router.tls.certresolver"
     value = "myresolver"
   }
 
   labels {
-    key   = "traefik.http.services.traefik-service.loadbalancer.server.port"
+    label = "traefik.http.services.traefik-service.loadbalancer.server.port"
     value = "8080"
   }
 }
