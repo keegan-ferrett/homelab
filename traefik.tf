@@ -37,5 +37,35 @@ resource "docker_container" "traefik" {
   networks_advanced {
     name = "core-network"
   }
+
+  labels {
+    key   = "traefik.enable"
+    value = "true"
+  }
+
+  labels {
+    key   = "traefik.http.routers.traefik-internal-router.rule"
+    value = "Host(\"traefik.keegan.boston\")"
+  }
+
+  labels {
+    key   = "traefik.http.routers.traefik-internal-router.entrypoints"
+    value = "websecure"
+  }
+
+  labels {
+    key   = "traefik.http.routers.traefik-internal-router.tls"
+    value = "true"
+  }
+
+  labels {
+    key   = "traefik.http.routers.traefik-internal-router.tls.certresolver"
+    value = "myresolver"
+  }
+
+  labels {
+    key   = "traefik.http.services.traefik-service.loadbalancer.server.port"
+    value = "8080"
+  }
 }
 
