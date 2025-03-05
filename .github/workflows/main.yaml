@@ -1,9 +1,9 @@
-name: Terraform Plan 
+name: Merge to main
 
 on:
-  pull_request:
-    types: [synchronize, edited]
-    branches: [ main ]
+  push:
+    branches:
+      - 'main'
 
 jobs:
   build:
@@ -14,3 +14,6 @@ jobs:
       run: terraform init
     - name: plan
       run: terraform plan
+    - name: apply
+      run: terraform apply -auto-approve
+
