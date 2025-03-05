@@ -1,4 +1,12 @@
 terraform {
+  cloud {
+    organization = "ferrett-homelab"
+
+    workspaces {
+      name = "homelab"
+    }
+  }
+
   required_providers {
     docker = {
       source  = "kreuzwerker/docker"

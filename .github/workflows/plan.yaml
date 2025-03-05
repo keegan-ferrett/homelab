@@ -1,0 +1,16 @@
+name: Terraform Plan 
+
+on:
+  pull_request:
+    types: [synchronize, edited]
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: self-hosted
+    steps:
+    - uses: actions/checkout@v4
+    - name: init
+      run: terraform init
+    - name: plan
+      run: terraform plan
