@@ -8,6 +8,9 @@ jobs:
   build:
     runs-on: self-hosted
     steps:
+    - name: init
+      run: terraform init
+    steps:
     - name: plan
       run: terraform plan
 
