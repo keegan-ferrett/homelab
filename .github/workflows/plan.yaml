@@ -1,0 +1,13 @@
+name: Terraform Plan 
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: self-hosted
+    steps:
+    - name: plan
+      run: terraform plan
+
