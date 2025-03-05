@@ -14,7 +14,7 @@ resource "docker_container" "traefik" {
   }
 
   volumes {
-    host_path       = "/home/keegan/homelab/core/traefik/config.yaml"
+    host_path       = "/home/keegan/homelab/core/traefik/traefik.yaml"
     container_path  = "/etc/traefik/traefik.yaml"
     read_only       = false
   }
