@@ -9,14 +9,13 @@ resource "docker_container" "vault" {
   command       = [ "server" ]
 
   volumes {
-    # ./config.hcl:/vault/config/config.hcl
-    host_path       = "/Users/keegan/Development/ferrett.xyz/homelab_ext/config.hcl"
+    host_path       = "${path.cwd}/config.hcl"
     container_path  = "/vault/config/config.hcl"
     read_only       = false
   }
 
   volumes {
-    host_path       = "/Users/keegan/Development/ferrett.xyz/homelab_ext/vault"
+    host_path       = "${path.cwd}/vault"
     container_path  = "/vault/file"
     read_only       = false
   }
