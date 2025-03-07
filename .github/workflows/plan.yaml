@@ -2,7 +2,7 @@ name: Terraform Plan
 
 on:
   pull_request:
-    types: [synchronize, edited]
+    types: [synchronize, edited, opened]
     branches: [ main ]
 
 jobs:
