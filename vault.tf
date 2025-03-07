@@ -2,7 +2,7 @@ resource "docker_image" "vault" {
   name = "hashicorp/vault:1.19"
 }
 
-resource "docker_container" "traefik" {
+resource "docker_container" "vault" {
   name          = "vault-core"
   image         = docker_image.vault.image_id
   network_mode  = "bridge"
