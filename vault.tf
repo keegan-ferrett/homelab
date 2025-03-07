@@ -9,7 +9,7 @@ resource "docker_container" "vault" {
   command       = [ "server" ]
 
   volumes {
-    host_path       = "${path.cwd}/config.hcl"
+    host_path       = "${path.cwd}/core/vault/config.hcl"
     container_path  = "/vault/config/config.hcl"
     read_only       = false
   }
