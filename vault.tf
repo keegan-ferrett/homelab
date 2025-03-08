@@ -8,6 +8,10 @@ resource "docker_container" "vault" {
   network_mode  = "bridge"
   command       = [ "server" ]
 
+  capabilities {
+    add             = ["IPC_LOCK"]
+  }
+
   volumes {
     host_path       = "${path.cwd}/core/vault/config.hcl"
     container_path  = "/vault/config/config.hcl"
