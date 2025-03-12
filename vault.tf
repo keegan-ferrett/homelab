@@ -24,4 +24,34 @@ resource "docker_container" "vault" {
     internal = 8200
     external = 8200
   }
+
+  labels {
+    label = "traefik.enable"
+    value = "true"
+  }
+
+  labels {
+    label = "traefik.http.routers.vault-internal-router.rule"
+    value = "Host(\"vault.keegan.boston\")"
+  }
+
+  labels {
+    label = "traefik.http.routers.vault-internal-router.entrypoints"
+    value = "websecure"
+  }
+
+  labels {
+    label = "traefik.http.routers.vault-internal-router.tls"
+    value = "true"
+  }
+
+  labels {
+    label = "traefik.http.routers.vault-internal-router.tls.certresolver"
+    value = "myresolver"
+  }
+
+  labels {
+    label = "traefik.http.services.vault-service.loadbalancer.server.port"
+    value = "8200"
+  }
 }
