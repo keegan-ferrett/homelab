@@ -7,6 +7,10 @@ resource "docker_container" "traefik" {
   image         = docker_image.traefik.image_id
   network_mode  = "bridge"
 
+  networks_advanced {
+    name            = docker_network.core_network.id
+  }
+
   volumes {
     host_path       = "/var/run/docker.sock"
     container_path  = "/var/run/docker.sock"

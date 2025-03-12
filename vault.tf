@@ -8,6 +8,10 @@ resource "docker_container" "vault" {
   network_mode  = "bridge"
   command       = [ "server" ]
 
+  networks_advanced {
+    name            = docker_network.core_network.id
+  }
+
   capabilities {
     add             = ["IPC_LOCK"]
   }
