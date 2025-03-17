@@ -1,6 +1,5 @@
 provider "vault" {
   address = "https://vault.keegan.boston"
-  token   = vault_approle_auth_backend_login.approle.token
 }
 
 # Authenticate with Vault using AppRole
