@@ -1,19 +1,24 @@
 provider "vault" {
-  address = "https://vault.keegan.boston"
-}
+  address               = "https://vault.keegan.boston"
+  token_name             = ""
+  skip_child_token       = true
+  max_lease_ttl_seconds  = 0
 
-# Authenticate with Vault using AppRole
-resource "vault_approle_auth_backend_login" "approle" {
-  role_id   = var.vault_role_id
-  secret_id = var.vault_secret_id
+  # AppRole authentication
+  auth_login {
+    path = "auth/system:approle/login"
+    
+    parameters = {
+      role_id   = var.vault_role_id
+      secret_id = var.vault_secret_id
+    }
+  }
 }
 
 # Retrieve secrets from Vault
 data "vault_kv_secret_v2" "postgres" {
   mount = "core"
   name  = "postgres/admin"
-
-  depends_on = [vault_approle_auth_backend_login.approle]
 }
 
 # Deploy Ubuntu container with secrets as environment variables
