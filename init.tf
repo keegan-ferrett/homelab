@@ -19,3 +19,7 @@ provider "docker" {
   host = "unix:///var/run/docker.sock"
 }
 
+resource "docker_network" "core_network" {
+  name = "network-core"
+}
+

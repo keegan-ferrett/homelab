@@ -8,6 +8,10 @@ resource "docker_container" "vault" {
   network_mode  = "bridge"
   command       = [ "server" ]
 
+  networks_advanced {
+    name            = docker_network.core_network.id
+  }
+
   capabilities {
     add             = ["IPC_LOCK"]
   }
@@ -19,7 +23,7 @@ resource "docker_container" "vault" {
   }
 
   volumes {
-    host_path       = "${path.cwd}/vault"
+    host_path       = "/data/vault/file"
     container_path  = "/vault/file"
     read_only       = false
   }
