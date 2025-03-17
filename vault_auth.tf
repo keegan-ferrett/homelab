@@ -10,10 +10,23 @@ resource "vault_approle_auth_backend_login" "approle" {
 
 # Retrieve secrets from Vault
 data "vault_kv_secret_v2" "myapp_secrets" {
-  mount = "core"
+  mount = "core/postgres"
   name  = "core"
 
   depends_on = [vault_approle_auth_backend_login.approle]
+}
+
+# Deploy Ubuntu container with secrets as environment variables
+resource "docker_container" "ubuntu" {
+  name  = "ubuntu-secrets-container"
+  image = "ubuntu:latest"
+
+  env = [
+    "DB_USER=${data.vault_kv_secret_v2.admin.data["data"]["DB_USER"]}",
+    "DB_PASS=${data.vault_kv_secret_v2.admin.data["data"]["DB_PASS"]}"
+  ]
+
+  command = ["sleep", "infinity"] # Keep the container running
 }
 
 variable "vault_role_id" {
