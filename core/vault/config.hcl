@@ -9,7 +9,7 @@ storage "file" {
   path = "/vault/file"
 }
 
-api_addr = "http://127.0.0.1:8200"
+api_addr = "http://vault.keegan.boston"
 
 disable_mlock = true
 
