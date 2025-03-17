@@ -23,7 +23,7 @@ resource "docker_container" "vault" {
   }
 
   volumes {
-    host_path       = "${path.cwd}/vault"
+    host_path       = "/data/vault/file"
     container_path  = "/vault/file"
     read_only       = false
   }
