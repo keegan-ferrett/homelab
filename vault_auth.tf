@@ -1,7 +1,10 @@
 provider "vault" {
-  address = "https://vault.keegan.boston"
+  address               = "https://vault.keegan.boston"
+  token_name             = ""
+  skip_child_token       = true
+  max_lease_ttl_seconds  = 0
 
-    # AppRole authentication
+  # AppRole authentication
   auth_login {
     path = "auth/system:approle/login"
     
