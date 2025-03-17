@@ -8,9 +8,13 @@ on:
 jobs:
   build:
     runs-on: self-hosted
+    environment: deployment
     steps:
     - uses: actions/checkout@v4
     - name: init
       run: terraform init
     - name: plan
       run: terraform plan
+      env:
+          TF_VAR_vault_role_id: ${{ secrets.TF_VAR_VAULT_ROLE_ID }}
+          TF_VAR_vault_secret_id: ${{ secrets.TF_VAR_VAULT_SECRET_ID }}
