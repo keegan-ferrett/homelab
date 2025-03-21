@@ -18,7 +18,7 @@ resource "docker_container" "cassandra" {
   }
 
   ports {
-    internal = 7000
-    external = 7000
+    internal = 9042
+    external = 9042
   }
 }
