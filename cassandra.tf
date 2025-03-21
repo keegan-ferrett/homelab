@@ -1,5 +1,5 @@
 resource "docker_image" "cassandra" {
-  name = "cassandra:4.0"
+  name = "cassandra:5.0"
 }
 
 resource "docker_container" "cassandra" {
