@@ -16,6 +16,7 @@ resource "docker_container" "keycloak" {
   name          = "keycloak-app"
   image         = docker_image.keycloak.image_id
   network_mode  = "bridge"
+  command       = [ "start" ]
   env           = [
     "KC_PROXY_ADDRESS_FORWARDING=true",
     "KC_PROXY_HEADERS=xforwarded",
