@@ -39,11 +39,6 @@ resource "docker_container" "keycloak" {
     name        = docker_network.core_network.id
   }
 
-  ports {
-    internal = 5432
-    external = 5432
-  }
-
   labels {
     label = "traefik.enable"
     value = "true"
