@@ -65,6 +65,30 @@ resource "docker_container" "keycloak" {
     value = "myresolver"
   }
 
+
+labels {
+    label = "traefik.http.routers.keycloak-dev-router.rule"
+    value = "Host(\"auth-dev.keegan.boston\")"
+  }
+
+  labels {
+    label = "traefik.http.routers.keycloak-dev-router.entrypoints"
+    value = "websecure"
+  }
+
+  labels {
+    label = "traefik.http.routers.keycloak-dev-router.tls"
+    value = "true"
+  }
+
+  labels {
+    label = "traefik.http.routers.keycloak-dev-router.tls.certresolver"
+    value = "myresolver"
+  }
+
+
+
+
   labels {
     label = "traefik.http.services.keycloak-service.loadbalancer.server.port"
     value = "8080"
