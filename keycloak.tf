@@ -86,9 +86,6 @@ labels {
     value = "myresolver"
   }
 
-
-
-
   labels {
     label = "traefik.http.services.keycloak-service.loadbalancer.server.port"
     value = "8080"
