@@ -11,7 +11,7 @@ resource "docker_container" "typesense" {
   name          = "typesense-core"
   image         = docker_image.typesense.image_id
   network_mode  = "bridge"
-  command       = [ "-data-dir", "/data", "--api-key=${data.vault_kv_secret_v2.typesense.data["key"]}", "--enable-cors" ]
+  command       = [ "--data-dir", "/data", "--api-key=${data.vault_kv_secret_v2.typesense.data["key"]}", "--enable-cors" ]
 
   networks_advanced {
     name        = docker_network.core_network.id
