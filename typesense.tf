@@ -50,7 +50,7 @@ resource "docker_container" "typesense" {
 
 
   labels {
-    label = "traefik.http.services.keycloak-service.loadbalancer.server.port"
+    label = "traefik.http.services.typesense-service.loadbalancer.server.port"
     value = "8108"
   }
 
