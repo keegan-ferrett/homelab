@@ -38,10 +38,6 @@ resource "docker_container" "traefik" {
     external = 8080
   }
 
-  networks_advanced {
-    name = "core-network"
-  }
-
   labels {
     label = "traefik.enable"
     value = "true"
