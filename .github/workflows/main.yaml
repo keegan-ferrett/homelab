@@ -11,8 +11,10 @@ jobs:
     environment: deployment
     steps:
     - uses: actions/checkout@v4
+    - name: user
+      run: echo $USER
     - name: sync config
-      run: ./bin/sync_file.sh core/vault/config.hcl /data/configs/vault/config.hcl
+      run: sudo ./bin/sync_file.sh core/vault/config.hcl /data/configs/vault/config.hcl
     - name: init
       run: terraform init
     - name: plan
