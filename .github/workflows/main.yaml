@@ -12,7 +12,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: sync config
-      run: ./bin/sync_file.sh core/vault/config.hcl /vault/config/config.hcl
+      run: ./bin/sync_file.sh core/vault/config.hcl /data/configs/vault/config.hcl
     - name: init
       run: terraform init
     - name: plan
