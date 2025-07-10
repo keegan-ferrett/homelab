@@ -11,6 +11,8 @@ jobs:
     environment: deployment
     steps:
     - uses: actions/checkout@v4
+    - name: sync config
+      run: ./bin/sync_file.sh core/vault/config.hcl /vault/config/config.hcl
     - name: init
       run: terraform init
     - name: plan
