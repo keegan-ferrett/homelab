@@ -14,7 +14,7 @@ jobs:
     - name: user
       run: echo $USER
     - name: sync config
-      run: sudo ./bin/sync_file.sh core/vault/config.hcl /data/configs/vault/config.hcl
+      run: ./bin/sync_file.sh core/vault/config.hcl /data/configs/vault/config.hcl
     - name: init
       run: terraform init
     - name: plan
