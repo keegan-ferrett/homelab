@@ -63,3 +63,16 @@ resource "docker_container" "vault" {
     value = "8200"
   }
 }
+
+resource "vault_auth_backend" "approle_backend" {
+  type = "approle"
+  path = "approle"
+
+  tune {
+    listing_visibility = "unauth"
+  }
+
+  depends_on = [
+    docker_container.vault
+  ]
+}
