@@ -64,15 +64,3 @@ resource "docker_container" "vault" {
   }
 }
 
-resource "vault_auth_backend" "approle_backend" {
-  type = "approle"
-  path = "approle"
-
-  tune {
-    listing_visibility = "unauth"
-  }
-
-  depends_on = [
-    docker_container.vault
-  ]
-}
