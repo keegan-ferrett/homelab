@@ -12,11 +12,6 @@ terraform {
       source  = "kreuzwerker/docker"
       version = "3.0.2"
     }
-
-    vault = {
-      source = "hashicorp/vault"
-      version = "4.7.0"
-    }
   }
 }
 
