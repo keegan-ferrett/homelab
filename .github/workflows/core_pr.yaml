@@ -5,6 +5,10 @@ on:
     types: [synchronize, edited, opened]
     branches: [ main ]
 
+defaults:
+  run:
+    working-directory: core/
+
 jobs:
   build:
     runs-on: self-hosted
@@ -15,6 +19,3 @@ jobs:
       run: terraform init
     - name: plan
       run: terraform plan
-      env:
-          TF_VAR_vault_role_id: ${{ secrets.TF_VAR_VAULT_ROLE_ID }}
-          TF_VAR_vault_secret_id: ${{ secrets.TF_VAR_VAULT_SECRET_ID }}

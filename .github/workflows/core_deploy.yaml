@@ -2,8 +2,14 @@ name: Merge to main
 
 on:
   push:
+    paths:
+      - core/**
     branches:
       - 'main'
+
+defaults:
+  run:
+    working-directory: core/
 
 jobs:
   build:
@@ -17,12 +23,6 @@ jobs:
       run: terraform init
     - name: plan
       run: terraform plan
-      env:
-          TF_VAR_vault_role_id: ${{ secrets.TF_VAR_VAULT_ROLE_ID }}
-          TF_VAR_vault_secret_id: ${{ secrets.TF_VAR_VAULT_SECRET_ID }}
     - name: apply
       run: terraform apply -auto-approve
-      env:
-          TF_VAR_vault_role_id: ${{ secrets.TF_VAR_VAULT_ROLE_ID }}
-          TF_VAR_vault_secret_id: ${{ secrets.TF_VAR_VAULT_SECRET_ID }}
 

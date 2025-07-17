@@ -3,7 +3,7 @@ terraform {
     organization = "ferrett-homelab"
 
     workspaces {
-      name = "homelab"
+      name = "homelab:core"
     }
   }
 
