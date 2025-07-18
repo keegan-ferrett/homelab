@@ -22,6 +22,7 @@ terraform {
 
 provider "vault" {
   address = "http://192.168.88.101:8200"
+  skip_child_token = true
 }
 
 provider "random" {
