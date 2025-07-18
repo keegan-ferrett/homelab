@@ -1,4 +1,12 @@
 terraform {
+  cloud {
+    organization = "ferrett-homelab"
+
+    workspaces {
+      name = "homelab-services"
+    }
+  }
+
   required_providers {
     random = {
       source = "hashicorp/random"
