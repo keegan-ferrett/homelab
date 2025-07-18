@@ -2,8 +2,8 @@ name: Deploy Services on Merge to Main
 
 on:
   push:
-    paths:
-      - services/**
+    # paths:
+    #   - services/**
     branches:
       - 'main'
 
@@ -18,7 +18,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Retrieve secret from Vault
-      uses: hashicorp/vault-action@9a8b7c6d5e4f3a2b1c0d9e8f7a6b5c4d3e2f1a0b
+      uses: hashicorp/vault-action@v2
       with:
         exportToken: true
         method: jwt
