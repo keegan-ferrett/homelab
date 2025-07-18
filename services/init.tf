@@ -22,7 +22,6 @@ terraform {
 
 provider "vault" {
   address = "http://192.168.88.101:8200"
-  version = "~> 5.0.0"
 }
 
 provider "random" {
