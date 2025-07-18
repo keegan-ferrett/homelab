@@ -27,6 +27,7 @@ jobs:
         method: jwt
         url: http://192.168.88.101:8200
         role: github-actions 
+        jwtGithubAudience: homelab
     - name: init
       run: terraform init
     - name: plan
