@@ -40,3 +40,21 @@ resource "vault_mount" "kvv2" {
   type        = "kv"
   options     = { version = "2" }
 }
+
+resource "vault_kv_secret_v2" "example" {
+  mount                      = vault_mount.kvv2.path
+  name                       = "secret"
+  cas                        = 1
+  delete_all_versions        = true
+  data_json                  = jsonencode(
+    {
+      zip       = "zap",
+      foo       = "bar",
+      passowrd  = random_password.password.result
+    }
+  )
+
+  custom_metadata {
+
+  }
+}
