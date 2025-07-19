@@ -81,7 +81,7 @@ resource "docker_container" "postgres" {
   network_mode  = "bridge"
   env           = [
     "POSTGRES_USER=admin",
-    "POSTGRES_PASSWORD=${vault_mount.postgres_pass.path}"
+    "POSTGRES_PASSWORD=${random_password.postgres_pass.result}"
   ]
 
   networks_advanced {
