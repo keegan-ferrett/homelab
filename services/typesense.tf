@@ -70,3 +70,19 @@ resource "consul_agent_service" "typesense" {
   port    = 8108
   tags    = ["db", "static"]
 }
+
+resource "vault_kv_secret_v2" "admin_postgress" {
+  mount                      = vault_mount.postgres_pass.path
+  name                       = "admin/typesense"
+  cas                        = 1
+  delete_all_versions        = true
+  data_json                  = jsonencode(
+    {
+      "api-key"  = random_password.typesense_key.result
+    }
+  )
+
+  custom_metadata {
+
+  }
+}
