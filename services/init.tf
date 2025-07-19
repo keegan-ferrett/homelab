@@ -125,7 +125,7 @@ resource "consul_service" "postgres" {
   tags    = ["db", "static"]
 
   check {
-    id       = "postgres_check"
+    check_id       = "postgres_check"
     name     = "Postgres TCP Check"
     tcp      = "192.168.88.101:5432"
     interval = "10s"
