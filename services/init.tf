@@ -41,7 +41,7 @@ provider "vault" {
 }
 
 provider "consul" {
-  address    = "192.168.88.101:8500"
+  address    = "192.168.88.101:8301"
   datacenter = "dc1"
 }
 
@@ -117,8 +117,8 @@ resource "docker_container" "postgres" {
   }
 }
 
-resource "consul_service" "postgres" {
-  name    = "postgres"
+resource "consul_agent_service" "postgres" {
+  name    = "postgres1"
   node    = "node0"
   datacenter = "dc1"
   address = "192.168.88.101"
@@ -126,12 +126,12 @@ resource "consul_service" "postgres" {
   tags    = ["db", "static"]
 
   check {
-    check_id        = "service:postgres"
+    check_id        = "service:postgres1"
     name            = "Postgres TCP Health Check"
     tcp             = "192.168.88.101:5432"
     interval        = "10s"
     timeout         = "1s"
     tls_skip_verify = true
-    deregister_critical_service_after = ""  # Wait 90 minutes before deregistering
+    deregister_critical_service_after = "10m"  # Wait 90 minutes before deregistering
   }
 }
