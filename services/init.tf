@@ -124,7 +124,7 @@ resource "consul_service" "postgres" {
   port    = 5432
   tags    = ["db", "static"]
 
-  # check {
+  check {
     check_id        = "service:postgres"
     name            = "Postgres TCP Health Check"
     tcp             = "192.168.88.101:5432"
