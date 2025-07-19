@@ -41,7 +41,7 @@ provider "vault" {
 }
 
 provider "consul" {
-  address    = "192.168.88.101:8301"
+  address    = "192.168.88.101:8500"
   datacenter = "dc1"
 }
 
