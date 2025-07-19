@@ -125,12 +125,12 @@ resource "consul_service" "postgres" {
   tags    = ["db", "static"]
 
   # check {
-  #   check_id        = "service:postgres"
-  #   name            = "Postgres TCP Health Check"
-  #   tcp             = "192.168.88.101:5432"
-  #   interval        = "10s"
-  #   timeout         = "1s"
-  #   tls_skip_verify = true
-  #   deregister_critical_service_after = "90m"  # Wait 90 minutes before deregistering
-  # }
+    check_id        = "service:postgres"
+    name            = "Postgres TCP Health Check"
+    tcp             = "192.168.88.101:5432"
+    interval        = "10s"
+    timeout         = "1s"
+    tls_skip_verify = true
+    deregister_critical_service_after = ""  # Wait 90 minutes before deregistering
+  }
 }
