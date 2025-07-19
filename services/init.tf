@@ -29,32 +29,75 @@ provider "random" {
   # Configuration options
 }
 
-resource "random_password" "password" {
-  length           = 16
-  special          = true
-  override_special = "!#$%&*()-_=+[]{}<>:?"
+resource "docker_network" "core_network" {
+  name = "network-core"
 }
 
-resource "vault_mount" "kvv2" {
-  path        = "my-kvv2"
+resource "random_password" "postgres_password" {
+  length           = 16
+  special          = true
+  override_special = "!#$%&*-_=+?"
+}
+
+resource "vault_mount" "postgres_pass" {
+  path        = "services"
   type        = "kv"
   options     = { version = "2" }
 }
 
-resource "vault_kv_secret_v2" "example" {
-  mount                      = vault_mount.kvv2.path
-  name                       = "secret"
+resource "vault_kv_secret_v2" "admin_postgress" {
+  mount                      = vault_mount.postgres_pass.path
+  name                       = "admin/postgres"
   cas                        = 1
   delete_all_versions        = true
   data_json                  = jsonencode(
     {
-      zip       = "zap",
-      foo       = "bar",
-      passowrd  = random_password.password.result
+      username  = "admin"
+      passowrd  = random_password.postgres_pass.result
     }
   )
 
   custom_metadata {
 
   }
+}
+
+resource "docker_image" "postgres" {
+  name = "postgres:17.2"
+}
+
+resource "docker_container" "postgres" {
+  name          = "postgres-core"
+  image         = docker_image.postgres.image_id
+  network_mode  = "bridge"
+  env           = [
+    "POSTGRES_USER=admin",
+    "POSTGRES_PASSWORD=${vault_mount.postgres_pass.path}"
+  ]
+
+  networks_advanced {
+    name            = "e6e3be88c519"
+  }
+
+  volumes {
+    host_path       = "/data/postgres"
+    container_path  = "/var/lib/postgresql/data"
+    read_only       = false
+  }
+
+  ports {
+    internal = 5432
+    external = 5432
+  }
+
+  labels {
+    label = "traefik.enable"
+    value = "true"
+  }
+
+  labels {
+    label = "traefik.tcp.routers.postgres-router.rule"
+    value = "Host(\"postgres.keegan.boston\")"
+  }
+
 }
