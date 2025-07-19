@@ -131,5 +131,6 @@ resource "consul_service" "postgres" {
     interval        = "10s"
     timeout         = "1s"
     tls_skip_verify = true
+    deregister_critical_service_after = "0"
   }
 }
