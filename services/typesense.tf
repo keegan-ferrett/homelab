@@ -71,7 +71,7 @@ resource "consul_agent_service" "typesense" {
   tags    = ["db", "static"]
 }
 
-resource "vault_kv_secret_v2" "admin_postgress" {
+resource "vault_kv_secret_v2" "admin_typesense" {
   mount                      = vault_mount.postgres_pass.path
   name                       = "admin/typesense"
   cas                        = 1
