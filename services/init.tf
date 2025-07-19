@@ -38,10 +38,6 @@ provider "random" {
   # Configuration options
 }
 
-resource "docker_network" "core_network" {
-  name = "network-core"
-}
-
 resource "random_password" "postgres_password" {
   length           = 16
   special          = true
