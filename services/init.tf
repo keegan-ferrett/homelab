@@ -62,7 +62,7 @@ resource "vault_kv_secret_v2" "admin_postgress" {
   data_json                  = jsonencode(
     {
       username  = "admin"
-      passowrd  = random_password.postgres_pass.result
+      passowrd  = random_password.postgres_password.result
     }
   )
 
@@ -81,7 +81,7 @@ resource "docker_container" "postgres" {
   network_mode  = "bridge"
   env           = [
     "POSTGRES_USER=admin",
-    "POSTGRES_PASSWORD=${random_password.postgres_pass.result}"
+    "POSTGRES_PASSWORD=${random_password.postgres_password.result}"
   ]
 
   networks_advanced {
