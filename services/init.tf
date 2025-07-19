@@ -125,10 +125,11 @@ resource "consul_service" "postgres" {
   tags    = ["db", "static"]
 
   check {
-    check_id = "service:postgres1"
-    name     = "Postgres TCP Health Check"
-    tcp      = "192.168.88.101:5432"
-    interval = "10s"
-    timeout  = "1s"
+    check_id        = "service:postgres"
+    name            = "Postgres TCP Health Check"
+    tcp             = "192.168.88.101:5432"
+    interval        = "10s"
+    timeout         = "1s"
+    tls_skip_verify = true
   }
 }
