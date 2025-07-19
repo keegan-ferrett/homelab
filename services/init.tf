@@ -123,12 +123,4 @@ resource "consul_service" "postgres" {
   address = "192.168.88.101"
   port    = 5432
   tags    = ["db", "static"]
-
-  check {
-    check_id = "postgres_check"
-    name     = "Postgres TCP Check"
-    tcp      = "192.168.88.101:5432"
-    interval = "10s"
-    timeout  = "1s"
-  }
 }
