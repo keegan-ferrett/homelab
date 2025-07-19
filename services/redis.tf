@@ -34,3 +34,11 @@ resource "docker_container" "redis" {
     value = "HostSNI(\"redis.keegan.boston\")"
   }
 }
+
+resource "consul_agent_service" "redis1" {
+  name    = "redis1"
+  address = "192.168.88.101"
+  port    = 6379
+  tags    = ["db", "static"]
+}
+
