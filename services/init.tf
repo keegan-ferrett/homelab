@@ -22,6 +22,12 @@ terraform {
       source = "hashicorp/vault"
       version = "5.1.0"
     }
+
+    consul = {
+      source = "hashicorp/consul"
+      version = "2.22.0"
+    }
+
   }
 }
 
@@ -32,6 +38,11 @@ provider "docker" {
 provider "vault" {
   address = "http://192.168.88.101:8200"
   skip_child_token = true
+}
+
+provider "consul" {
+  address    = "192.168.88.101:8200"
+  datacenter = "dc1"
 }
 
 provider "random" {
@@ -104,5 +115,19 @@ resource "docker_container" "postgres" {
     label = "traefik.tcp.routers.postgres-router.rule"
     value = "Host(\"postgres.keegan.boston\")"
   }
+}
 
+resource "consul_service" "postgres" {
+  name    = "postgres"
+  id      = "postgres-db"
+  address = "192.168.88.101"
+  port    = 5432
+  tags    = ["db", "static"]
+
+  check {
+    name     = "Postgres TCP Check"
+    tcp      = "192.168.88.101:5432"
+    interval = "10s"
+    timeout  = "1s"
+  }
 }
