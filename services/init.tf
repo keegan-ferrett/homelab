@@ -8,6 +8,11 @@ terraform {
   }
 
   required_providers {
+    docker = {
+      source  = "kreuzwerker/docker"
+      version = "3.0.2"
+    }
+    
     random = {
       source = "hashicorp/random"
       version = "3.7.2"
@@ -18,6 +23,10 @@ terraform {
       version = "5.1.0"
     }
   }
+}
+
+provider "docker" {
+  host = "unix:///var/run/docker.sock"
 }
 
 provider "vault" {
