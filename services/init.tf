@@ -120,6 +120,7 @@ resource "docker_container" "postgres" {
 resource "consul_service" "postgres" {
   name    = "postgres"
   node    = "node0"
+  datacenter = "dc1"
   address = "192.168.88.101"
   port    = 5432
   tags    = ["db", "static"]
