@@ -33,7 +33,7 @@ resource "docker_container" "registry" {
 
   labels {
     label = "traefik.http.routers.registry-internal-router.entrypoints"
-    value = "websecure"
+    value = "web"
   }
 
   labels {
