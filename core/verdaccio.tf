@@ -1,5 +1,5 @@
 resource "docker_image" "verdaccio" {
-  name = "verdaccio/verdaccio:4"
+  name = "verdaccio/verdaccio:6.1"
 }
 
 resource "docker_container" "verdaccio" {
