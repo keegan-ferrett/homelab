@@ -10,11 +10,11 @@ resource "docker_container" "verdaccio" {
     name            = docker_network.core_network.id
   }
 
-  volumes {
-    host_path       = "/data/verdaccio"
-    container_path  = "/verdaccio/storage"
-    read_only       = false
-  }
+  # volumes {
+  #   host_path       = "/data/verdaccio"
+  #   container_path  = "/verdaccio/storage"
+  #   read_only       = false
+  # }
 
   labels {
     label = "traefik.enable"
