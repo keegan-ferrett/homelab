@@ -115,6 +115,11 @@ resource "docker_container" "postgres" {
     label = "traefik.tcp.routers.postgres-router.rule"
     value = "HostSNI(\"postgres.keegan.boston\")"
   }
+
+  labels {
+    label = "traefik.tcp.routers.postgres-router.tls"
+    value = "true"
+  }
 }
 
 resource "consul_agent_service" "postgres" {
