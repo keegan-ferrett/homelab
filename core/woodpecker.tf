@@ -74,49 +74,24 @@ resource "docker_container" "woodpecker_server" {
   }
 }
 
-# resource "docker_container" "verdaccio" {
-#   name          = "verdaccio-core"
-#   image         = docker_image.verdaccio.image_id
-#
-#   networks_advanced {
-#     name            = docker_network.core_network.id
-#   }
-#
-#   # volumes {
-#   #   host_path       = "/data/verdaccio"
-#   #   container_path  = "/verdaccio/storage"
-#   #   read_only       = false
-#   # }
-#
-#   labels {
-#     label = "traefik.enable"
-#     value = "true"
-#   }
-#
-#   labels {
-#     label = "traefik.http.routers.woodpecker-internal-router.rule"
-#     value = "Host(\"npm.keegan.boston\")"
-#   }
-#
-#   labels {
-#     label = "traefik.http.routers.woodpecker-internal-router.entrypoints"
-#     value = "websecure"
-#   }
-#
-#   labels {
-#     label = "traefik.http.routers.woodpecker-internal-router.tls"
-#     value = "true"
-#   }
-#
-#   labels {
-#     label = "traefik.http.routers.woodpecker-internal-router.tls.certresolver"
-#     value = "myresolver"
-#   }
-#
-#   labels {
-#     label = "traefik.http.services.verdaccio-service.loadbalancer.server.port"
-#     value = "4873"
-#   }
-# }
+resource "docker_container" "woodpecker_agent" {
+  name          = "woodpecker-agent-core"
+  image         = docker_image.woodpecker_a.image_id
 
+  networks_advanced {
+    name            = docker_network.core_network.id
+  }
+
+  env           = [
+    "WOODPECKER_SERVER=https://woodpecker.keegan.boston",
+    "WOODPECKER_AGENT_SECRET=${random_password.woodpecker.result}"
+  ]
+
+
+  volumes {
+    host_path       = "/var/run/docker.sock"
+    container_path  = "/var/run/docker.sock"
+    read_only       = false
+  }
+}
 
