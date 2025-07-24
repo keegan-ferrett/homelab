@@ -5,6 +5,7 @@ resource "docker_image" "verdaccio" {
 resource "docker_container" "verdaccio" {
   name          = "verdaccio-core"
   image         = docker_image.verdaccio.image_id
+  network_mode  = "bridge"
 
   networks_advanced {
     name            = docker_network.core_network.id

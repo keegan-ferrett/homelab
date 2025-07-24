@@ -5,6 +5,7 @@ resource "docker_image" "registry" {
 resource "docker_container" "registry" {
   name          = "registry-core"
   image         = docker_image.registry.image_id
+  network_mode  = "bridge"
 
   networks_advanced {
     name            = docker_network.core_network.id

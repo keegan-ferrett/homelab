@@ -24,7 +24,7 @@ resource "docker_container" "woodpecker_server" {
   image         = docker_image.woodpecker_s.image_id
 
   env           = [
-    "WOODPECKER_OPEN=user",
+    "WOODPECKER_OPEN=true",
     "WOODPECKER_HOST=woodpecker.keegan.boston",
     "WOODPECKER_GITHUB=true",
     "WOODPECKER_GITHUB_CLIENT=${var.GITHUB_CLIENT}",
@@ -39,7 +39,7 @@ resource "docker_container" "woodpecker_server" {
 
   volumes {
     host_path       = "/data/woodpecker"
-    container_path  = "/var/lib/woodpecker/"
+    container_path  = "/var/lib/woodpecker"
     read_only       = false
   }
 
