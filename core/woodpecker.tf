@@ -25,7 +25,7 @@ resource "docker_container" "woodpecker_server" {
 
   env           = [
     "WOODPECKER_OPEN=true",
-    "WOODPECKER_HOST=woodpecker.keegan.boston",
+    "WOODPECKER_HOST=https://woodpecker.keegan.boston",
     "WOODPECKER_GITHUB=true",
     "WOODPECKER_GITHUB_CLIENT=${var.GITHUB_CLIENT}",
     "WOODPECKER_GITHUB_SECRET=${var.GITHUB_SECRET}",
