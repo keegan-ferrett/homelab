@@ -83,7 +83,7 @@ resource "docker_container" "woodpecker_agent" {
   }
 
   env           = [
-    "WOODPECKER_SERVER=https://woodpecker.keegan.boston",
+    "WOODPECKER_SERVER=woodpecker-server-core:9000",
     "WOODPECKER_AGENT_SECRET=${random_password.woodpecker.result}"
   ]
 
