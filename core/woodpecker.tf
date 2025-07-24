@@ -11,11 +11,11 @@ resource "random_password" "woodpecker" {
   special          = false
 }
 
-resource "docker_image" "woodpeckser_s" {
+resource "docker_image" "woodpecker_s" {
   name = "woodpeckerci/woodpecker-server:v3"
 }
 
-resource "docker_image" "woodpeckser_a" {
+resource "docker_image" "woodpecker_a" {
   name = "woodpeckerci/woodpecker-agent:v3"
 }
 
