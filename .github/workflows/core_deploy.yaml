@@ -23,6 +23,12 @@ jobs:
       run: terraform init
     - name: plan
       run: terraform plan
+      env:
+          TF_VAR_GITHUB_CLIENT: ${{ secrets.TF_VAR_GITHUB_CLIENT }}
+          TF_VAR_GITHUB_SECRET: ${{ secrets.TF_VAR_GITHUB_SECRET }}
     - name: apply
       run: terraform apply -auto-approve
+      env:
+          TF_VAR_GITHUB_CLIENT: ${{ secrets.TF_VAR_GITHUB_CLIENT }}
+          TF_VAR_GITHUB_SECRET: ${{ secrets.TF_VAR_GITHUB_SECRET }}
 
