@@ -69,7 +69,7 @@ resource "docker_container" "woodpecker_server" {
   }
 
   labels {
-    label = "traefik.http.services.verdaccio-service.loadbalancer.server.port"
+    label = "traefik.http.services.woodpecker-service.loadbalancer.server.port"
     value = "8000"
   }
 }
