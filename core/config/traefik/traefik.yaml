@@ -45,7 +45,7 @@ log:
   # Optional
   # Default: "ERROR"
   #
- level: DEBUG
+ level: INFO
 
   # Sets the filepath for the traefik log. If not specified, stdout will be used.
   # Intermediate directories are created if necessary.
@@ -129,14 +129,20 @@ api:
 ################################################################
 
 providers:
+  consul:
+    refreshInterval: 15s
+    exposedByDefault: false
+    endpoint:
+      address: "http://192.168.88.101:8500"
   nomad:
     refreshInterval: 15s
+    exposedByDefault: false
     endpoint:
       address: "http://192.168.88.101:4646"
   # Enable Docker configuration backend
   docker:
     endpoint: "unix:///var/run/docker.sock"
-#    exposedByDefault: false
+    exposedByDefault: false
 
 certificatesResolvers:
   myresolver:
