@@ -24,12 +24,14 @@ resource "docker_container" "woodpecker_server" {
   image         = docker_image.woodpecker_s.image_id
 
   env           = [
-    "WOODPECKER_OPEN=true",
+    "WOODPECKER_OPEN=false",
     "WOODPECKER_HOST=https://woodpecker.keegan.boston",
     "WOODPECKER_GITHUB=true",
     "WOODPECKER_GITHUB_CLIENT=${var.GITHUB_CLIENT}",
     "WOODPECKER_GITHUB_SECRET=${var.GITHUB_SECRET}",
-    "WOODPECKER_AGENT_SECRET=${random_password.woodpecker.result}"
+    "WOODPECKER_AGENT_SECRET=${random_password.woodpecker.result}",
+    "WOODPECKER_ADMIN=keegan-ferrett",
+    "WOODPECKER_PLUGINS_PRIVILEGED=woodpeckerci/plugin-docker-buildx:latest"
   ]
 
 
