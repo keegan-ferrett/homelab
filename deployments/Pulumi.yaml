@@ -1,0 +1,12 @@
+name: homelab
+runtime:
+  name: python
+  options:
+    toolchain: poetry
+description: Core Homelab services deployment
+config:
+  docker:host:
+    value: ssh://keegan@192.168.88.101:22
+  pulumi:tags:
+    value:
+      pulumi:template: https://www.pulumi.com/ai/api/project/5b153a2a-30f5-457a-a002-f690c4908fca.zip

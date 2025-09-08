@@ -1,0 +1,16 @@
+when:
+  - event: push
+    branch: main
+
+steps:
+  - name: deploy pulumi
+    image: pulumi/pulumi
+    directory: deployments
+    environment:
+      PULUMI_ACCESS_TOKEN: 
+        from_secret: PULUMI_ACCESS_TOKEN
+    commands:
+      - echo building
+      - go get
+      - pulumi stack select main
+      - pulumi up --yes
