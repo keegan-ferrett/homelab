@@ -11,6 +11,6 @@ steps:
         from_secret: PULUMI_ACCESS_TOKEN
     commands:
       - echo building
-      - go get
+      - poetry install
       - pulumi stack select main
       - pulumi up --yes
